@@ -7,7 +7,7 @@ def contact(request):
     return render(request, 'appu/../../Djangohouse/templates/contact.html')
 
 def index(request):
-    return render(request, 'appu/index.html')
+    return render(request, 'appu/../../Djangohouse/templates/index.html')
 
 def propertyAgent(request):
     return render(request, 'appu/property-agent.html')
