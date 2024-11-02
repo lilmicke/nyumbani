@@ -1,10 +1,10 @@
 from django.shortcuts import render
 
 def about(request):
-    return render(request, 'appu/about.html')
+    return render(request, 'appu/../../Djangohouse/templates/about.html')
 
 def contact(request):
-    return render(request, 'appu/contact.html')
+    return render(request, 'appu/../../Djangohouse/templates/contact.html')
 
 def index(request):
     return render(request, 'appu/index.html')
