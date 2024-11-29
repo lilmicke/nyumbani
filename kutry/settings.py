@@ -12,8 +12,6 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 
 from pathlib import Path
 
-from django.template.context_processors import static
-
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -39,7 +37,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'appu.apps.AppuConfig',
+    'appu.apps.AppuConfig',  # Keep this line
+    # 'appu',  # Remove this line
 ]
 
 MIDDLEWARE = [
@@ -57,8 +56,7 @@ ROOT_URLCONF = 'kutry.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR / 'templates']
-        ,
+        'DIRS': [BASE_DIR / 'templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -103,13 +101,28 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+# Set custom user model
+AUTH_USER_MODEL = 'appu.CustomUser'
+
+
+# Email settings
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'  # Use SMTP for production
+EMAIL_HOST = 'smtp.example.com'  # Your SMTP server
+EMAIL_PORT = 587  # For TLS, or 465 for SSL
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = 'your-email@example.com'  # Your email
+EMAIL_HOST_PASSWORD = 'your-email-password'  # Your email password
+
+# For development/testing (sends emails to the console instead of an actual email):
+# EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
 
 # Internationalization
 # https://docs.djangoproject.com/en/5.1/topics/i18n/
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'UTC'  # Adjust to your time zone if needed
 
 USE_I18N = True
 
@@ -124,8 +137,10 @@ STATICFILES_DIRS = [
     BASE_DIR / "static",
 ]
 
+# settings.py
 
-
+MEDIA_URL = '/media/'
+MEDIA_ROOT = BASE_DIR / 'media'
 
 
 
